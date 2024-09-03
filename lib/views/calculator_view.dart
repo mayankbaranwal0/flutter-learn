@@ -72,16 +72,23 @@ class _CalculatorViewState extends State<CalculatorView> {
         children: [
           // calculator display
           CalculatorDisplay(
-              hint: "Enter first number", controller: displayOneController),
+            key: const Key("displayOne"),
+            hint: "Enter first number",
+            controller: displayOneController,
+          ),
           const SizedBox(
             height: 30,
           ),
           CalculatorDisplay(
-              hint: "Enter second number", controller: displayTwoController),
+            key: const Key("displayTwo"),
+            hint: "Enter second number",
+            controller: displayTwoController,
+          ),
           const SizedBox(
             height: 30,
           ),
           Text(
+            key: const Key("Result"),
             z.toString(),
             style: const TextStyle(
               fontSize: 60,
