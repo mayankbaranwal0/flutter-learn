@@ -16,11 +16,52 @@ class _CalculatorViewState extends State<CalculatorView> {
   final displayOneController = TextEditingController();
   final displayTwoController = TextEditingController();
 
+  late final AppLifecycleListener _listener;
+
   @override
   void initState() {
     super.initState();
     displayOneController.text = x.toString();
     displayTwoController.text = y.toString();
+
+    _listener = AppLifecycleListener(
+      onShow: _onShow,
+      onHide: _onHide,
+      onResume: _onResume,
+      onDetach: _onDetach,
+      onInactive: _onInactive,
+      onPause: _onPause,
+      onRestart: _onRestart,
+      onStateChange: _onStateChange,
+      // onExitRequested: _onExitRequested,
+    );
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    displayOneController.dispose();
+    displayTwoController.dispose();
+    _listener.dispose();
+    super.dispose();
+  }
+
+  void _onShow() => print("onShow called");
+
+  void _onHide() => print("onHide called");
+
+  void _onResume() => print("onResume called");
+
+  void _onDetach() => print("onDetach called");
+
+  void _onPause() => print("onPause called");
+
+  void _onInactive() => print("onInactive called");
+
+  void _onRestart() => print("onRestart called");
+
+  void _onStateChange(AppLifecycleState state) {
+    print("onStateChange called with state: $state");
   }
 
   @override
